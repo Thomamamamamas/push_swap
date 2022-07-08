@@ -6,69 +6,69 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/04/05 17:58:34 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/08 17:42:36 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	reverse_rotate(t_stack *stack)
+void	reverse_rotate(t_stk *stk)
 {
 	int	tmp;
 	int	tmp2;
 	int	n;
 
-	n = stack->len - 1;
+	n = stk->len - 1;
 	while (n >= 0)
 	{
-		tmp = stack->stack[n];
-		if (n != stack->len - 1)
-			stack->stack[n--] = tmp2;
-		if (n == stack->len - 1)
-			stack->stack[n--] = stack->stack[0];
+		tmp = stk->stk[n];
+		if (n != stk->len - 1)
+			stk->stk[n--] = tmp2;
+		if (n == stk->len - 1)
+			stk->stk[n--] = stk->stk[0];
 		tmp2 = tmp;
 	}
 }
 
-void	rotate(t_stack *stack)
+void	rotate(t_stk *stk)
 {
 	int	tmp;
 	int	tmp2;
 	int	n;
 
 	n = 0;
-	while (n < stack->len)
+	while (n < stk->len)
 	{
-		tmp = stack->stack[n];
+		tmp = stk->stk[n];
 		if (n != 0)
-			stack->stack[n++] = tmp2;
+			stk->stk[n++] = tmp2;
 		else
-			stack->stack[n++] = stack->stack[stack->len - 1];
+			stk->stk[n++] = stk->stk[stk->len - 1];
 		tmp2 = tmp;
 	}
 }
 
-int	is_smallest(int nb, t_stack *stack)
+int	smaller(int nb, t_stk *stk)
 {
 	int	n;
 
 	n = 0;
-	while (n < stack->len)
+	while (n < stk->len)
 	{
-		if (stack->stack[n] < nb)
+		if (stk->stk[n] < nb)
 			return (0);
 		n++;
 	}
 	return (1);
 }
 
-int	is_largest(int nb, t_stack *stack)
+int	larger(int nb, t_stk *stk)
 {
 	int	n;
 
 	n = 0;
-	while (n < stack->len)
+	while (n < stk->len)
 	{
-		if (stack->stack[n] > nb)
+		if (stk->stk[n] > nb)
 			return (0);
 		n++;
 	}

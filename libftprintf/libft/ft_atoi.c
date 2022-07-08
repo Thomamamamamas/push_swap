@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 15:03:50 by tcasale           #+#    #+#             */
-/*   Updated: 2022/04/01 10:20:37 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/04/06 10:29:44 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -20,9 +20,9 @@ int	ft_is_numeric(char c)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	result;
-	int	negative;
+	int			i;
+	long long	result;
+	int			negative;
 
 	i = 0;
 	result = 0;
@@ -41,5 +41,8 @@ int	ft_atoi(const char *str)
 		result = result * 10 + (str[i] - 48);
 		i++;
 	}
-	return (result * negative);
+	result = result * negative;
+	if (result > INT_MAX || result < INT_MIN)
+		result = 0;
+	return ((int)result);
 }

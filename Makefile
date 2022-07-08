@@ -6,18 +6,12 @@
 #    By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 11:17:43 by tcasale           #+#    #+#              #
-#    Updated: 2022/04/05 14:23:26 by tcasale          ###   ########.fr        #
+#    Updated: 2022/07/08 17:12:59 by tcasale          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME	= push_swap
 
-SRCS	= push_swap.c \
-		push_swap_utils.c \
-		push_swap_parsing.c \
-		push_swap_sort.c \
-		push_swap_stack_utils.c \
-		push_swap_stack_utils2.c \
-		push_swap_debug.c
+SRCS	= $(wildcard *.c) 
 
 OBJS	= ${SRCS:.c=.o}
 

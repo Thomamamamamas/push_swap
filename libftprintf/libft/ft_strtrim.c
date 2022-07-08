@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 12:26:14 by tcasale           #+#    #+#             */
-/*   Updated: 2022/03/28 12:26:18 by tcasale          ###   ########.fr       */
+/*   Created: 2022/07/08 17:43:42 by tcasale           #+#    #+#             */
+/*   Updated: 2022/07/08 17:43:44 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 #include <stdlib.h>
 
