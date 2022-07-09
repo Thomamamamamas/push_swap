@@ -6,28 +6,28 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:23:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/08 21:44:40 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/09 09:50:51 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 void	sort_three_number(t_stk *stk_a, t_stk *stk_b)
 {
-	if (smaller(stk_a->stk[1], stk_a) && larger(stk_a->stk[0], stk_a))
+	if (stk_a->stk[1] == stk_a->smallest && stk_a->stk[0] == stk_a->smallest)
 		stack_swap(stk_a, stk_b, 'a');
-	else if (smaller(stk_a->stk[0], stk_a) && larger(stk_a->stk[2], stk_a))
+	else if (stk_a->stk[0] == stk_a->smallest && stk_a->stk[2] == stk_a->largest)
 	{
 		stack_swap(stk_a, stk_b, 'a');
 		stack_reverse_rotate(stk_a, stk_b, 'a');
 	}
-	else if (smaller(stk_a->stk[1], stk_a) && larger(stk_a->stk[2], stk_a))
+	else if (stk_a->stk[1] == stk_a->smallest && stk_a->stk[2] == stk_a->largest)
 		stack_rotate(stk_a, stk_b, 'a');
-	else if (smaller(stk_a->stk[2], stk_a) && larger(stk_a->stk[1], stk_a))
+	else if (stk_a->stk[2] == stk_a->smallest && stk_a->stk[1] == stk_a->largest)
 	{
 		stack_swap(stk_a, stk_b, 'a');
 		stack_rotate(stk_a, stk_b, 'a');
 	}
-	else if (smaller(stk_a->stk[0], stk_a) && larger(stk_a->stk[1], stk_a))
+	else if (stk_a->stk[0] == stk_a->smallest && stk_a->stk[1] == stk_a->largest)
 		stack_reverse_rotate(stk_a, stk_b, 'a');
 }
 

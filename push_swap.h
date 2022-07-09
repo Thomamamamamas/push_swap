@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/08 21:38:51 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/09 09:44:46 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -22,6 +22,10 @@ typedef struct s_stk
 {
 	int	*stk;
 	int	len;
+	int	top;
+	int	bottom;
+	int	smallest;
+	int	largest;
 }		t_stk;
 
 //push_swap_utils
@@ -62,8 +66,9 @@ void		stack_reverse_rotate(t_stk *stk_a, t_stk *stk_b, int mode);
 //push_swap_stack_utils2
 void		rotate(t_stk *stk);
 void		reverse_rotate(t_stk *stk);
-int			smaller(int nb, t_stk *stk);
-int			larger(int nb, t_stk *stk);
+int			get_smallest(t_stk *stk);
+int			get_largest(t_stk *stk);
+void		update_stack_data(t_stk *stk_a, t_stk *stk_b);
 
 //push_swap_debug
 void		print_stacks(t_stk *stk_a, t_stk *stk_b);

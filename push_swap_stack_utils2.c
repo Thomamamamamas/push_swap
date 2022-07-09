@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/08 17:42:36 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/09 10:01:19 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -47,30 +47,44 @@ void	rotate(t_stk *stk)
 	}
 }
 
-int	smaller(int nb, t_stk *stk)
+int	get_smallest(t_stk *stk)
 {
 	int	n;
+	int	res;
 
 	n = 0;
+	res = INT_MAX;
 	while (n < stk->len)
 	{
-		if (stk->stk[n] < nb)
-			return (0);
+		if (stk->stk[n] < res)
+			res = stk->stk[n];
 		n++;
 	}
-	return (1);
+	return (res);
 }
 
-int	larger(int nb, t_stk *stk)
+int	get_largest(t_stk *stk)
 {
 	int	n;
+	int	res;
 
 	n = 0;
+	res = INT_MIN;
 	while (n < stk->len)
 	{
-		if (stk->stk[n] > nb)
-			return (0);
+		if (stk->stk[n] > res)
+			res = stk->stk[n];
 		n++;
 	}
-	return (1);
+	return (res);
+}
+
+void	update_stack_data(t_stk *stk_a, t_stk *stk_b)
+{
+	stk_a->top = stk_a->stk[stk_a->len - 1];
+	stk_a->smallest = get_smallest(stk_a);
+	stk_a->largest = get_largest(stk_a);
+	stk_b->top = stk_b->stk[stk_b->len - 1];
+	stk_b->smallest = get_smallest(stk_b);
+	stk_b->largest = get_largest(stk_b);
 }
