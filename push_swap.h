@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/09 09:44:46 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:56:09 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -43,7 +43,7 @@ void		parse_stack(int argc, char **argv, t_stk *stk_a);
 int			arg_is_valid(char *argv);
 int			arg_is_string_of_int(char *argv);
 void		parse_string(char *argv, t_stk *stk_a);
-void		handle_parsing_error(t_stk *stk_a);
+void		handle_parsing_error(char *argv, t_stk *stk_a);
 
 //push_swap_parsing2
 int			number_of_int_in_string(char *str);
@@ -56,12 +56,15 @@ void		sort_large_stack(t_stk *stk_a, t_stk *stk_b);
 
 //push_swap_sort_utils
 void		mini_stack_empty_b(t_stk *stk_a, t_stk *stk_b);
+void		smart_fill_stack_b(t_stk *stk_a, t_stk *stk_b);
+int		keep_in_stack_a(t_stk *stk_a);
 
 //push_swap_stack_utils
 void		stack_swap(t_stk *stk_a, t_stk *stk_b, int mode);
 void		stack_push(t_stk *stk_a, t_stk *stk_b, int mode);
 void		stack_rotate(t_stk *stk_a, t_stk *stk_b, int mode);
 void		stack_reverse_rotate(t_stk *stk_a, t_stk *stk_b, int mode);
+int			stack_is_sorted(t_stk *stk);
 
 //push_swap_stack_utils2
 void		rotate(t_stk *stk);

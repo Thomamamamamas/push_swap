@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:23:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/09 09:50:51 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:47:24 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -43,27 +43,9 @@ void	sort_mini_stack(t_stk *stk_a, t_stk *stk_b)
 
 void	sort_medium_stack(t_stk *stk_a, t_stk *stk_b)
 {
-	int	n;
-	int	m;
-	int	hold;
-
-	n = 0;
-	while (!stack_is_sort(stk_a))
-	{
-		m = 0;
-		hold = get_smallest_step_medium(stk_a);
-		while (m++ <= hold)
-		{
-			if (hold <= stk_a->len / 2)
-				stack_reverse_rotate(stk_a, stk_b, 'a');
-			else
-				stack_rotate(stk_a, stk_b, 'a');
-			print_stacks(stk_a, stk_b);
-		}
-		stack_push(stk_a, stk_b, 'b');
-		print_stacks(stk_a, stk_b);
-		n++;
-	}
+	smart_fill_stack_b(stk_a, stk_b);
+	print_stacks(stk_a, stk_b);
+	ft_printf("%d\n", stack_is_sorted(stk_a));
 }
 
 void	sort_large_stack(t_stk *stk_a, t_stk *stk_b)

@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:08:54 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/09 09:43:52 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:01:39 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -30,10 +30,11 @@ void	parse_stack(int argc, char **argv, t_stk *stk_a)
 		m = 0;
 		while (n > 0)
 		{
+			ft_printf("%s\n", argv[n]);
 			if (arg_is_valid(argv[n]))
 				stk_a->stk[m++] = ft_atoi(argv[n]);
 			else
-				handle_parsing_error(stk_a);
+				handle_parsing_error(argv[n], stk_a);
 			n--;
 		}
 	}
@@ -91,7 +92,7 @@ void	parse_string(char *argv, t_stk *stk_a)
 			tmp = (char *)malloc(sizeof(char) * 11);
 		if (ft_isdigit(*argv))
 			tmp[m++] = *argv;
-		if (*argv == ' ')
+		if (*argv == ' ' && m > 0)
 		{
 			stk_a->stk[n--] = ft_atoi(tmp);
 			free(tmp);
@@ -106,7 +107,7 @@ void	parse_string(char *argv, t_stk *stk_a)
 	}
 }
 
-void	handle_parsing_error(t_stk *stk_a)
+void	handle_parsing_error(char *argv, t_stk *stk_a)
 {
 	ft_printf("Error\n");
 	free(stk_a->stk);

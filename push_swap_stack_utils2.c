@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/09 10:01:19 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:26:11 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -82,9 +82,11 @@ int	get_largest(t_stk *stk)
 void	update_stack_data(t_stk *stk_a, t_stk *stk_b)
 {
 	stk_a->top = stk_a->stk[stk_a->len - 1];
+	stk_a->bottom = stk_a->stk[0];
 	stk_a->smallest = get_smallest(stk_a);
 	stk_a->largest = get_largest(stk_a);
 	stk_b->top = stk_b->stk[stk_b->len - 1];
+	stk_b->bottom = stk_b->stk[0];
 	stk_b->smallest = get_smallest(stk_b);
 	stk_b->largest = get_largest(stk_b);
 }

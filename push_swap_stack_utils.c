@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:21:24 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/09 09:45:13 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:47:32 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -61,4 +61,18 @@ void	stack_rotate(t_stk *stk_a, t_stk *stk_b, int mode)
 		rotate(stk_b);
 	update_stack_data(stk_a, stk_b);
 	ft_printf("r%c\n", mode);
+}
+
+int	stack_is_sorted(t_stk *stk)
+{
+	int	n;
+
+	n = stk->len - 1;
+	while (n > 0)
+	{
+		if (stk->stk[n] > stk->stk[n - 1])
+			return (0);
+		n--;
+	}
+	return (1);
 }
