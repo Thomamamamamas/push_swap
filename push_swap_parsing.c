@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:08:54 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/11 17:01:39 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/12 21:45:49 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -15,28 +15,29 @@ void	parse_stack(int argc, char **argv, t_stk *stk_a)
 {
 	int		n;
 	int		m;
+	int *tmp;
 
-	if (arg_is_string_of_int(argv[argc - 1]))
+	stk_a->len = 0;
+	stk_a->stk = (int *)malloc(sizeof(int) * stk_a->len);
+	n = argc - 1;
+	m = 0;
+	while (n > 0)
 	{
-		stk_a->len = number_of_int_in_string(argv[argc - 1]);
-		stk_a->stk = (int *)malloc(sizeof(int) * stk_a->len);
-		parse_string(argv[argc - 1], stk_a);
-	}
-	else
-	{
-		stk_a->len = argc - 1;
-		stk_a->stk = (int *)malloc(sizeof(int) * stk_a->len);
-		n = stk_a->len;
-		m = 0;
-		while (n > 0)
+		if (arg_is_string_of_int(argv[n]))
 		{
-			ft_printf("%s\n", argv[n]);
-			if (arg_is_valid(argv[n]))
-				stk_a->stk[m++] = ft_atoi(argv[n]);
-			else
-				handle_parsing_error(argv[n], stk_a);
-			n--;
+			tmp = parse_string(argv[n]);
+			update_str_parsing(stk_a, tmp, number_of_int_in_string(argv[n]));
+			m = m + number_of_int_in_string(argv[n]);
+			free(tmp);
 		}
+		else if (arg_is_valid(argv[n]))
+		{
+			update_int_parsing(stk_a);
+			stk_a->stk[m++] = ft_atoi(argv[n]);
+		}
+		else
+			handle_parsing_error(stk_a);
+		n--;
 	}
 }
 
@@ -78,23 +79,25 @@ int	arg_is_string_of_int(char *argv)
 		return (0);
 }
 
-void	parse_string(char *argv, t_stk *stk_a)
+int	*parse_string(char *argv)
 {
 	int		n;
 	int		m;
 	char	*tmp;
+	int		*numbers;
 
 	m = 0;
-	n = stk_a->len - 1;
+	n = number_of_int_in_string(argv) - 1;
+	numbers = (int *)malloc(sizeof(int) * n);
 	while (*argv)
 	{
-		if (ft_isdigit(*argv) && m == 0)
+		if ((ft_isdigit(*argv) || *argv == '-') && m == 0 )
 			tmp = (char *)malloc(sizeof(char) * 11);
-		if (ft_isdigit(*argv))
+		if (ft_isdigit(*argv) || *argv == '-')
 			tmp[m++] = *argv;
 		if (*argv == ' ' && m > 0)
 		{
-			stk_a->stk[n--] = ft_atoi(tmp);
+			numbers[n--] = ft_atoi(tmp);
 			free(tmp);
 			m = 0;
 		}
@@ -102,12 +105,13 @@ void	parse_string(char *argv, t_stk *stk_a)
 	}
 	if (tmp)
 	{
-		stk_a->stk[n--] = ft_atoi(tmp);
+		numbers[n--] = ft_atoi(tmp);
 		free(tmp);
 	}
+	return (numbers);
 }
 
-void	handle_parsing_error(char *argv, t_stk *stk_a)
+void	handle_parsing_error(t_stk *stk_a)
 {
 	ft_printf("Error\n");
 	free(stk_a->stk);

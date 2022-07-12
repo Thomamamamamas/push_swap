@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/11 16:56:09 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/12 10:46:27 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -42,11 +42,13 @@ int			get_number_index(t_stk *stk, int nb);
 void		parse_stack(int argc, char **argv, t_stk *stk_a);
 int			arg_is_valid(char *argv);
 int			arg_is_string_of_int(char *argv);
-void		parse_string(char *argv, t_stk *stk_a);
-void		handle_parsing_error(char *argv, t_stk *stk_a);
+int			*parse_string(char *argv);
+void		handle_parsing_error(t_stk *stk_a);
 
 //push_swap_parsing2
 int			number_of_int_in_string(char *str);
+void		update_str_parsing(t_stk *stk, int *numbers, int len);
+void		update_int_parsing(t_stk *stk);
 
 //push_swap_sort
 void		sort_three_number(t_stk *stk_a, t_stk *stk_b);
