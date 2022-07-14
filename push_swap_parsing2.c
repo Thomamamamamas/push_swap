@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:09:06 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/12 11:20:31 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/14 09:14:57 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -78,4 +78,35 @@ void	update_int_parsing(t_stk *stk)
 		m++;
 	}
 	free(tmp);
+}
+
+int	check_if_negative_int_is_valid(char *str)
+{
+	size_t	n;
+	size_t	m;
+
+	n = 0;
+	while (n < ft_strlen(str))
+	{
+		m = 0;
+		if (str[n] == '-')
+		{
+			n++;
+			while (str[n] && ft_isdigit(str[n]))
+			{
+				n++;
+				m++;
+			}
+			if (str[n])
+			{
+				if (str[n] != ' ' || m == 0)
+					return (0);
+			}
+			else if (!str[n])
+				if ((!ft_isdigit(str[n - 1]) && str[n - 1] != ' ') || m == 0)
+					return (0);
+		}
+		n++;
+	}
+	return (1);
 }

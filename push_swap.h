@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/12 10:46:27 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/07/14 08:29:52 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -49,6 +49,7 @@ void		handle_parsing_error(t_stk *stk_a);
 int			number_of_int_in_string(char *str);
 void		update_str_parsing(t_stk *stk, int *numbers, int len);
 void		update_int_parsing(t_stk *stk);
+int			check_if_negative_int_is_valid(char *str);
 
 //push_swap_sort
 void		sort_three_number(t_stk *stk_a, t_stk *stk_b);
