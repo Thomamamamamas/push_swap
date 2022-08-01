@@ -6,16 +6,16 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:08:54 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/01 13:47:41 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:26:19 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 void	parse_stack(int argc, char **argv, t_stk *stk_a)
 {
-	int		n;
-	int		m;
-	int *tmp;
+	int	n;
+	int	m;
+	int	*tmp;
 
 	stk_a->len = 0;
 	stk_a->stk = (int *)malloc(sizeof(int) * stk_a->len);
@@ -23,24 +23,12 @@ void	parse_stack(int argc, char **argv, t_stk *stk_a)
 	m = 0;
 	while (n > 0)
 	{
-			ft_printf("________________\n");
-			ft_printf("%s\n", argv[n]);
-			ft_printf("________________\n");
-		if (arg_is_string_of_int(argv[n]) && arg_is_valid(argv[n]))
+		if (arg_is_valid(argv[n]))
 		{
 			tmp = parse_string(argv[n]);
-			update_str_parsing(stk_a, tmp, number_of_int_in_string(argv[n]));
-			ft_printf("________________\n");
-			ft_printf("%d\n", stk_a->stk[0]);
-			ft_printf("%d\n", stk_a->stk[1]);
-			ft_printf("%d\n", stk_a->stk[2]);
+			update_stk_parsing(stk_a, tmp, number_of_int_in_string(argv[n]));
 			m = m + number_of_int_in_string(argv[n]);
 			free(tmp);
-		}
-		else if (arg_is_valid(argv[n]) && ft_strlen(argv[n]) < 10)
-		{
-			update_int_parsing(stk_a);
-			stk_a->stk[m++] = ft_atoi(argv[n]);
 		}
 		else
 			handle_parsing_error(stk_a);
@@ -50,7 +38,7 @@ void	parse_stack(int argc, char **argv, t_stk *stk_a)
 
 int	arg_is_valid(char *argv)
 {
-	if (!arg_is_string_of_int(argv))
+	if (!arg_is_string_of_int(argv) && ft_strlen(argv) > 10)
 		return (0);
 	while (*argv)
 	{
@@ -104,7 +92,7 @@ int	*parse_string(char *argv)
 	numbers = (int *)malloc(sizeof(int) * n);
 	while (*argv)
 	{
-		if ((ft_isdigit(*argv) || *argv == '-') && m == 0 )
+		if ((ft_isdigit(*argv) || *argv == '-') && m == 0)
 			tmp = (char *)malloc(sizeof(char) * 11);
 		if (ft_isdigit(*argv) || (*argv == '-'))
 			tmp[m++] = *argv;

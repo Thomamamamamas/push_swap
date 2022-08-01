@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/14 08:29:52 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:08:00 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -47,7 +47,7 @@ void		handle_parsing_error(t_stk *stk_a);
 
 //push_swap_parsing2
 int			number_of_int_in_string(char *str);
-void		update_str_parsing(t_stk *stk, int *numbers, int len);
+void		update_stk_parsing(t_stk *stk, int *numbers, int len);
 void		update_int_parsing(t_stk *stk);
 int			check_if_negative_int_is_valid(char *str);
 
@@ -67,7 +67,6 @@ void		stack_swap(t_stk *stk_a, t_stk *stk_b, int mode);
 void		stack_push(t_stk *stk_a, t_stk *stk_b, int mode);
 void		stack_rotate(t_stk *stk_a, t_stk *stk_b, int mode);
 void		stack_reverse_rotate(t_stk *stk_a, t_stk *stk_b, int mode);
-int			stack_is_sorted(t_stk *stk);
 
 //push_swap_stack_utils2
 void		rotate(t_stk *stk);

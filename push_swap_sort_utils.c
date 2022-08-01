@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/11 16:51:07 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:27:18 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 void	mini_stack_empty_b(t_stk *stk_a, t_stk *stk_b)
 {
-	if (stk_a->top < stk_b->top)
+	if (stk_a->top < stk_b->top || stk_a->bottom > stk_b->top || stk_a->largest < stk_b->top)
 	{
-		if (stk_a->bottom < stk_b->top && stk_a->bottom == stk_a->largest)
+		if (stk_a->largest > stk_b->top)
 		{
+			while (stk_b->top < stk_a->bottom && stk_b->top > stk_a->smallest)
+				stack_reverse_rotate(stk_a, stk_b, 'a');
+			while (stk_b->top > stk_a->top)
+				stack_rotate(stk_a, stk_b, 'a');
 			stack_push(stk_a, stk_b, 'a');
-			stack_rotate(stk_a, stk_b, 'a');
+			print_stacks(stk_a, stk_b);
+			if (stk_b->len == 0 || (stk_b->len > 0 && stk_b->top < stk_a->smallest))
+			{
+				while (!stack_is_sort(stk_a))
+					stack_rotate(stk_a, stk_b, 'a');
+			}
 		}
 		else
 		{
-			if (stk_a->largest < stk_b->top)
-			{
-				while (stk_a->top < stk_b->top && stk_a->largest != stk_a->top && stk_b->largest != stk_b->top)
-					stack_rotate(stk_a, stk_b, 'a');
-				while (stk_a->top < stk_b->top && stk_a->smallest != stk_a->top && stk_b->largest == stk_b->top)
-					stack_rotate(stk_a, stk_b, 'a');
-			}
-			else
-				while (stk_a->top < stk_b->top && stk_a->largest != stk_a->top)
-					stack_rotate(stk_a, stk_b, 'a');
-			stack_push(stk_a, stk_b, 'a');
-			while (stk_a->top != stk_a->smallest && stk_b->len == 0)
+			while (!stack_is_sort(stk_a))
 				stack_rotate(stk_a, stk_b, 'a');
+			stack_push(stk_a, stk_b, 'a');
+			stack_rotate(stk_a, stk_b, 'a');
 		}
 	}
 	else
@@ -44,7 +44,7 @@ void	mini_stack_empty_b(t_stk *stk_a, t_stk *stk_b)
 
 void	smart_fill_stack_b(t_stk *stk_a, t_stk *stk_b)
 {
-	while (!stack_is_sorted(stk_a))
+	while (!stack_is_sort(stk_a))
 	{
 		while (stk_a->top > stk_a->bottom && keep_in_stack_a(stk_a))
 		{

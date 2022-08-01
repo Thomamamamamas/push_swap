@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:07:51 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/01 13:28:05 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:25:44 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -41,6 +41,6 @@ int	main(int argc, char **argv)
 			sort_large_stack(&stk_a, &stk_b);
 	}
 	print_stacks(&stk_a, &stk_b);
-	ft_printf("%d\n", stack_is_sorted(&stk_a));
+	ft_printf("%d\n", stack_is_sort(&stk_a));
 	return (0);
 }

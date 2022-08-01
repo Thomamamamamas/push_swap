@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:40:28 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/08 17:43:15 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:17:37 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -22,7 +22,7 @@ int	stack_is_sort(t_stk *stk)
 	int	i;
 	int	j;
 
-	i = stk->len;
+	i = stk->len - 1;
 	while (i >= 0)
 	{
 		j = i - 1;
