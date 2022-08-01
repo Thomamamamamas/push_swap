@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:08:54 by tcasale           #+#    #+#             */
-/*   Updated: 2022/07/14 09:22:15 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 13:47:41 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -23,10 +23,17 @@ void	parse_stack(int argc, char **argv, t_stk *stk_a)
 	m = 0;
 	while (n > 0)
 	{
+			ft_printf("________________\n");
+			ft_printf("%s\n", argv[n]);
+			ft_printf("________________\n");
 		if (arg_is_string_of_int(argv[n]) && arg_is_valid(argv[n]))
 		{
 			tmp = parse_string(argv[n]);
 			update_str_parsing(stk_a, tmp, number_of_int_in_string(argv[n]));
+			ft_printf("________________\n");
+			ft_printf("%d\n", stk_a->stk[0]);
+			ft_printf("%d\n", stk_a->stk[1]);
+			ft_printf("%d\n", stk_a->stk[2]);
 			m = m + number_of_int_in_string(argv[n]);
 			free(tmp);
 		}
@@ -43,7 +50,7 @@ void	parse_stack(int argc, char **argv, t_stk *stk_a)
 
 int	arg_is_valid(char *argv)
 {
-	if (!arg_is_string_of_int(argv) && ft_atoi(argv) == 0)
+	if (!arg_is_string_of_int(argv))
 		return (0);
 	while (*argv)
 	{
