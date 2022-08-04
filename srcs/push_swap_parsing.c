@@ -1,0 +1,120 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_parsing.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 11:08:54 by tcasale           #+#    #+#             */
+/*   Updated: 2022/08/04 15:30:03 by tcasale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "../headers/push_swap.h"
+
+void	parse_stack(int argc, char **argv, t_stk *a)
+{
+	int	n;
+	int	m;
+	int	*tmp;
+
+	a->len = 0;
+	a->stk = (int *)malloc(sizeof(int) * a->len);
+	n = argc - 1;
+	m = 0;
+	while (n > 0)
+	{
+		if (arg_is_valid(argv[n]))
+		{
+			tmp = parse_string(argv[n]);
+			update_stk_parsing(a, tmp, number_of_int_in_string(argv[n]));
+			m = m + number_of_int_in_string(argv[n]);
+			free(tmp);
+		}
+		else
+			handle_parsing_error(a);
+		n--;
+	}
+}
+
+int	arg_is_valid(char *argv)
+{
+	if (!arg_is_string_of_int(argv) && ft_strlen(argv) > 10)
+		return (0);
+	while (*argv)
+	{
+		if (!ft_isdigit(*argv) && *argv != '-' && *argv != ' ')
+			return (0);
+		if (*argv == '-' && !check_if_negative_int_is_valid(argv))
+			return (0);
+		argv++;
+	}
+	return (1);
+}
+
+int	arg_is_string_of_int(char *argv)
+{
+	int	is_int;
+
+	is_int = 0;
+	while (*argv)
+	{
+		if (ft_isdigit(*argv) || *argv == ' ' || *argv == '-')
+		{
+			argv++;
+			if (ft_isdigit(*argv))
+				is_int = 1;
+			else if (*argv == ' ')
+			{
+				while (*argv && (*argv == ' ' || *argv == '-'))
+					argv++;
+				if (ft_isdigit(*argv))
+					is_int = 1;
+			}
+			argv++;
+		}
+		else
+			return (0);
+	}
+	if (is_int == 1)
+		return (1);
+	return (0);
+}
+
+int	*parse_string(char *argv)
+{
+	int		n;
+	int		m;
+	char	*tmp;
+	int		*numbers;
+
+	m = 0;
+	n = number_of_int_in_string(argv) - 1;
+	numbers = (int *)malloc(sizeof(int) * n);
+	while (*argv)
+	{
+		if ((ft_isdigit(*argv) || *argv == '-') && m == 0)
+			tmp = (char *)malloc(sizeof(char) * 11);
+		if (ft_isdigit(*argv) || (*argv == '-'))
+			tmp[m++] = *argv;
+		if (*argv == ' ' && m > 0)
+		{
+			numbers[n--] = ft_atoi(tmp);
+			free(tmp);
+			m = 0;
+		}
+		argv++;
+	}
+	if (tmp)
+	{
+		numbers[n--] = ft_atoi(tmp);
+		free(tmp);
+	}
+	return (numbers);
+}
+
+void	handle_parsing_error(t_stk *a)
+{
+	ft_printf("Error\n");
+	free(a->stk);
+	exit(0);
+}

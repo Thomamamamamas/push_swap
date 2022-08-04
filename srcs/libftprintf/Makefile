@@ -3,44 +3,54 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+         #
+#    By: tcasale <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/04 11:17:43 by tcasale           #+#    #+#              #
-#    Updated: 2022/08/04 15:33:51 by tcasale          ###   ########.fr        #
+#    Created: 2021/11/13 14:52:20 by tcasale           #+#    #+#              #
+#    Updated: 2022/03/19 19:01:40 by tcasale          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME	= push_swap
+NAME	= libftprintf.a
 
-SRCS	= $(wildcard srcs/*.c) 
+SRCS	=	ft_printf.c \
+			ft_printf_utils.c \
+			ft_printf_utils2.c \
+			ft_printf_parsing.c \
+			ft_printf_conversion.c \
+			ft_printf_precision.c
 
-OBJS	= ${SRCS:.c=.o}
+OBJS		= ${SRCS:.c=.o}
 
 HEADER	= includes
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
 RM		= rm -f
+AR		= ar rcs
+
+CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c
-			${CC} -c ${CFLAGS} -I.srcs/libftprintf/libftprintf.a -c $< -o $@
+			${CC} -c ${CFLAGS} -I./Libft/libft.a -o $@ $<
 
-all:	${NAME}
+all: $(NAME)
 
-${NAME}:	${OBJS} libftprintf
-	${CC} ${OBJS} ./srcs/libftprintf/libftprintf.a -o ${NAME}
 
-libftprintf:
-	${MAKE} -C ./srcs/libftprintf
-	cp srcs/libftprintf/libftprintf.a ${NAME}
+$(NAME):	libft ${OBJS}
+			$(AR) ${NAME} $(OBJS)
+
+libft:
+	$(MAKE) -C ./libft
+	cp libft/libft.a $(NAME)
+
+bonus: $(NAME)
 
 clean:
-		${MAKE} -C ./srcs/libftprintf $@
+		$(MAKE) -C ./libft $@
 		${RM} ${OBJS}
 
 fclean:	clean
-		${MAKE} -C ./srcs/libftprintf $@
+		$(MAKE) -C ./libft $@
 		${RM} ${NAME}
 
-re:	fclean all
+re: fclean all
 
-.PHONY: all fclean re libftprintf
+.PHONY:	all clean fclean re libft
