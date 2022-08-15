@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/04 17:43:45 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/05 22:06:14 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -28,14 +28,27 @@ typedef struct s_stk
 	int	max;
 }		t_stk;
 
+typedef struct s_lst
+{
+	int	*lst;
+	int	len;
+}		t_lst;
+
+typedef struct s_chunk
+{
+	t_lst	chunk;
+	int		*position;
+}			t_chunk;
+
 //push_swap_utils
 void		init_stack(t_stk *a, t_stk *b);
 int			stack_is_sort(t_stk *stk);
 
 //push_swap_utils2
 int			get_number_index(t_stk *stk, int nb);
-int			is_in_array(int n, int *array, int len);
-int			get_index_of_larger_nb(int n, int *array, int len);
+int			is_in_lst(int n, t_lst *lst);
+int			get_index_of_larger_nb(int nb, t_lst *lst);
+void		append_lst(int nb, t_lst *lst);
 
 //push_swap_parsing
 void		parse_stack(int argc, char **argv, t_stk *a);
@@ -60,10 +73,12 @@ void		sort_large_stack(t_stk *a, t_stk *b);
 //push_swap_sort_utils
 void		mini_stack_empty_b(t_stk *a, t_stk *b);
 void		medium_stack_empty_a(t_stk *a, t_stk *b);
-void		get_hold(t_stk *a, int *hold);
+int			get_hold_position(t_stk *a, t_lst *hold, t_chunk *chunk);
+int			valide_hold(int nb, t_lst *hold, t_chunk *chunk);
+void		add_to_hold_lst(int position, t_lst *hold, t_chunk *chunk);
 
 //push_swap_sort_utils2
-
+t_chunk		get_chunk(t_stk *a, t_lst *hold);
 
 //push_swap_stack_utils
 void		stack_swap(t_stk *a, t_stk *b, int mode);
@@ -80,5 +95,6 @@ void		update_stack_data(t_stk *a, t_stk *b);
 
 //push_swap_debug
 void		print_stacks(t_stk *a, t_stk *b);
+void		print_chunk(t_chunk *chunk);
 
 #endif

@@ -6,59 +6,59 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:21:24 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/04 15:31:16 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:07:52 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../headers/push_swap.h"
+#include "push_swap.h"
 
-void	stack_swap(t_stk *a, t_stk *b, int mode)
+void	stack_swap(t_stk *stk_a, t_stk *stk_b, int mode)
 {
 	int	tmp;
 
-	if ((mode == 'a' || mode == 's') && a->len >= 2)
+	if ((mode == 'a' || mode == 's') && stk_a->len >= 2)
 	{
-		tmp = a->stk[a->len - 1];
-		a->stk[a->len - 1] = a->stk[a->len - 2];
-		a->stk[a->len - 2] = tmp;
+		tmp = stk_a->stk[stk_a->len - 1];
+		stk_a->stk[stk_a->len - 1] = stk_a->stk[stk_a->len - 2];
+		stk_a->stk[stk_a->len - 2] = tmp;
 	}
-	if ((mode == 'b' || mode == 's') && b->len >= 2)
+	if ((mode == 'b' || mode == 's') && stk_b->len >= 2)
 	{
-		tmp = b->stk[b->len - 1];
-		b->stk[b->len - 1] = b->stk[b->len - 2];
-		b->stk[b->len - 2] = tmp;
+		tmp = stk_b->stk[stk_b->len - 1];
+		stk_b->stk[stk_b->len - 1] = stk_b->stk[stk_b->len - 2];
+		stk_b->stk[stk_b->len - 2] = tmp;
 	}
-	update_stack_data(a, b);
+	update_stack_data(stk_a, stk_b);
 	ft_printf("s%c\n", mode);
 }
 
-void	stack_push(t_stk *a, t_stk *b, int mode)
+void	stack_push(t_stk *stk_a, t_stk *stk_b, int mode)
 {
-	if (mode == 'a' && b->len >= 1)
-		a->stk[a->len++] = b->stk[--b->len];
-	else if (mode == 'b' && a->len >= 1)
-		b->stk[b->len++] = a->stk[--a->len];
-	update_stack_data(a, b);
+	if (mode == 'a' && stk_b->len >= 1)
+		stk_a->stk[stk_a->len++] = stk_b->stk[--stk_b->len];
+	else if (mode == 'b' && stk_a->len >= 1)
+		stk_b->stk[stk_b->len++] = stk_a->stk[--stk_a->len];
+	update_stack_data(stk_a, stk_b);
 	ft_printf("p%c\n", mode);
 }
 
-void	stack_reverse_rotate(t_stk *a, t_stk *b, int mode)
+void	stack_reverse_rotate(t_stk *stk_a, t_stk *stk_b, int mode)
 {
-	if ((mode == 'a' || mode == 'r') && a->len >= 2)
+	if ((mode == 'a' || mode == 'r') && stk_a->len >= 2)
 	{
-		reverse_rotate(a);
+		reverse_rotate(stk_a);
 	}
-	if ((mode == 'b' || mode == 'r') && b->len >= 2)
-		reverse_rotate(b);
-	update_stack_data(a, b);
+	if ((mode == 'b' || mode == 'r') && stk_b->len >= 2)
+		reverse_rotate(stk_b);
+	update_stack_data(stk_a, stk_b);
 	ft_printf("rr%c\n", mode);
 }
 
-void	stack_rotate(t_stk *a, t_stk *b, int mode)
+void	stack_rotate(t_stk *stk_a, t_stk *stk_b, int mode)
 {
-	if ((mode == 'a' || mode == 'r') && a->len >= 2)
-		rotate(a);
-	if ((mode == 'b' || mode == 'r') && b->len >= 2)
-		rotate(b);
-	update_stack_data(a, b);
+	if ((mode == 'a' || mode == 'r') && stk_a->len >= 2)
+		rotate(stk_a);
+	if ((mode == 'b' || mode == 'r') && stk_b->len >= 2)
+		rotate(stk_b);
+	update_stack_data(stk_a, stk_b);
 	ft_printf("r%c\n", mode);
 }

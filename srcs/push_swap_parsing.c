@@ -6,19 +6,19 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:08:54 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/04 15:30:03 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/05 14:20:02 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../headers/push_swap.h"
+#include "push_swap.h"
 
-void	parse_stack(int argc, char **argv, t_stk *a)
+void	parse_stack(int argc, char **argv, t_stk *stk_a)
 {
 	int	n;
 	int	m;
 	int	*tmp;
 
-	a->len = 0;
-	a->stk = (int *)malloc(sizeof(int) * a->len);
+	stk_a->len = 0;
+	stk_a->stk = (int *)malloc(sizeof(int) * stk_a->len);
 	n = argc - 1;
 	m = 0;
 	while (n > 0)
@@ -26,12 +26,12 @@ void	parse_stack(int argc, char **argv, t_stk *a)
 		if (arg_is_valid(argv[n]))
 		{
 			tmp = parse_string(argv[n]);
-			update_stk_parsing(a, tmp, number_of_int_in_string(argv[n]));
+			update_stk_parsing(stk_a, tmp, number_of_int_in_string(argv[n]));
 			m = m + number_of_int_in_string(argv[n]);
 			free(tmp);
 		}
 		else
-			handle_parsing_error(a);
+			handle_parsing_error(stk_a);
 		n--;
 	}
 }
@@ -112,9 +112,9 @@ int	*parse_string(char *argv)
 	return (numbers);
 }
 
-void	handle_parsing_error(t_stk *a)
+void	handle_parsing_error(t_stk *stk_a)
 {
 	ft_printf("Error\n");
-	free(a->stk);
+	free(stk_a->stk);
 	exit(0);
 }

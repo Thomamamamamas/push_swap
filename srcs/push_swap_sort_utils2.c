@@ -6,40 +6,38 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:47:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/04 17:43:42 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/05 22:09:57 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../headers/push_swap.c"
+#include "../headers/push_swap.h"
 
-int	*get_chunk(t_stk *a, int *hold, int len)
+t_chunk	get_chunk(t_stk *a, t_lst *hold)
 {
-	int	*chunk;
-	int	chunk_len;
-	int	n;
-	int	m;
+	t_chunk	chunk;
+	int		n;
 
-	chunk = (int *)malloc(sizeof(int) * 21);
-	chunk_len = 0;
+	chunk.chunk.lst = (int *)malloc(sizeof(int) * 21);
+	chunk.position = (int *)malloc(sizeof(int) * 21);
+	chunk.chunk.len = 0;
 	n = 0;
-	m = 0;
-	while (n < len)
+	while (n < a->len)
 	{
-		if (!is_in_array(a->stk[n], hold, len))
+		if (!is_in_lst(a->stk[n], hold))
 		{
-			if (chunk_len <= 20)
+			if (chunk.chunk.len < 20)
 			{
-				chunk[m++] = a->stk[n];
-				chunk_len++;
+				chunk.chunk.lst[chunk.chunk.len] = a->stk[n];
+				chunk.position[chunk.chunk.len] = n;
+				chunk.chunk.len++;
 			}
-			else if (get_index_of_larger_nb(a->stk[n], hold, len))
+			else if (get_index_of_larger_nb(a->stk[n], &chunk.chunk) != -1)
 			{
-				chunk[get_index_of_larger_nb(a->stk[n], hold, len)] = a->stk[n];
-				chunk_len++;
+				chunk.position[get_index_of_larger_nb(a->stk[n], &chunk.chunk)] = n;
+				ft_printf("pute\n");
+				chunk.chunk.lst[get_index_of_larger_nb(a->stk[n], &chunk.chunk)] = a->stk[n];
 			}
 		}
 		n++;
 	}
 	return (chunk);
 }
-
-int	

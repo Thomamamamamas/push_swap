@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:23:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/04 17:18:16 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/05 13:47:03 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -45,12 +45,6 @@ void	sort_mini_stack(t_stk *a, t_stk *b)
 
 void	sort_medium_stack(t_stk *a, t_stk *b)
 {
-	int	*hold;
-	int	len;
-	int	hold_top;
-	int	hold_bottom;
-
-	len = 0;
 	medium_stack_empty_a(a, b);
 }
 

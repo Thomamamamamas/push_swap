@@ -6,10 +6,10 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:09:06 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/04 15:30:18 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 15:35:14 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../headers/push_swap.h"
+#include "push_swap.h"
 
 int	number_of_int_in_string(char *str)
 {
@@ -105,28 +105,6 @@ int	check_if_negative_int_is_valid(char *str)
 			else if (!str[n])
 				if ((!ft_isdigit(str[n - 1]) && str[n - 1] != ' ') || m == 0)
 					return (0);
-		}
-		n++;
-	}
-	return (1);
-}
-
-int	is_not_duplicate(t_stk *stk)
-{
-	int	n;
-	int	m;
-	int	tmp;
-
-	n = 0;
-	while (n < stk->len)
-	{
-		m = n + 1;
-		tmp = stk->stk[n];
-		while (m < stk->len)
-		{
-			if (tmp == stk->stk[m])
-				return (0);
-			m++;
 		}
 		n++;
 	}

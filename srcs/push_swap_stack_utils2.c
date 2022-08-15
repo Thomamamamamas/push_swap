@@ -6,10 +6,10 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/04 15:31:28 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:05:48 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../headers/push_swap.h"
+#include "push_swap.h"
 
 void	reverse_rotate(t_stk *stk)
 {
@@ -47,7 +47,7 @@ void	rotate(t_stk *stk)
 	}
 }
 
-int	get_min(t_stk *stk)
+int	get_smallest(t_stk *stk)
 {
 	int	n;
 	int	res;
@@ -63,7 +63,7 @@ int	get_min(t_stk *stk)
 	return (res);
 }
 
-int	get_max(t_stk *stk)
+int	get_largest(t_stk *stk)
 {
 	int	n;
 	int	res;
@@ -79,14 +79,14 @@ int	get_max(t_stk *stk)
 	return (res);
 }
 
-void	update_stack_data(t_stk *a, t_stk *b)
+void	update_stack_data(t_stk *stk_a, t_stk *stk_b)
 {
-	a->top = a->stk[a->len - 1];
-	a->bottom = a->stk[0];
-	a->min = get_min(a);
-	a->max = get_max(a);
-	b->top = b->stk[b->len - 1];
-	b->bottom = b->stk[0];
-	b->min = get_min(b);
-	b->max = get_max(b);
+	stk_a->top = stk_a->stk[stk_a->len - 1];
+	stk_a->bottom = stk_a->stk[0];
+	stk_a->smallest = get_smallest(stk_a);
+	stk_a->largest = get_largest(stk_a);
+	stk_b->top = stk_b->stk[stk_b->len - 1];
+	stk_b->bottom = stk_b->stk[0];
+	stk_b->smallest = get_smallest(stk_b);
+	stk_b->largest = get_largest(stk_b);
 }
