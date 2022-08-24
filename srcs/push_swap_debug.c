@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:29:53 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/05 21:46:05 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/24 20:22:37 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -40,7 +40,7 @@ void	print_chunk(t_chunk *chunk)
 	int	n;
 	
 	n = 0;
-	ft_printf("_______________\n");
+	ft_printf("_____CHUNK_____\n");
 	while (n < chunk->chunk.len)
 	{
 		ft_printf("%d\n", chunk->chunk.lst[n]);
@@ -48,4 +48,19 @@ void	print_chunk(t_chunk *chunk)
 	}
 	ft_printf("_____CHUNK_____\n");
 	ft_printf("chunk len = %d\n", chunk->chunk.len);
+}
+
+void	print_hold(t_lst *hold)
+{
+	int	n;
+
+	n = 0;
+	ft_printf("_____HOLD______\n");
+	while (n < hold->len)
+	{
+		ft_printf("%d\n", hold->lst[n]);
+		n++;
+	}
+	ft_printf("_____HOLD______\n");
+	ft_printf("hold len = %d\n", hold->len);
 }

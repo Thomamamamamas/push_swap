@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/05 22:06:14 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/24 22:03:49 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -75,10 +75,10 @@ void		mini_stack_empty_b(t_stk *a, t_stk *b);
 void		medium_stack_empty_a(t_stk *a, t_stk *b);
 int			get_hold_position(t_stk *a, t_lst *hold, t_chunk *chunk);
 int			valide_hold(int nb, t_lst *hold, t_chunk *chunk);
-void		add_to_hold_lst(int position, t_lst *hold, t_chunk *chunk);
 
 //push_swap_sort_utils2
 t_chunk		get_chunk(t_stk *a, t_lst *hold);
+void		smart_rotate(t_stk *a, t_stk *b, int position);
 
 //push_swap_stack_utils
 void		stack_swap(t_stk *a, t_stk *b, int mode);
@@ -96,5 +96,6 @@ void		update_stack_data(t_stk *a, t_stk *b);
 //push_swap_debug
 void		print_stacks(t_stk *a, t_stk *b);
 void		print_chunk(t_chunk *chunk);
+void		print_hold(t_lst *hold);
 
 #endif

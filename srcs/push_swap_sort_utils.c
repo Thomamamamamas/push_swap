@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/05 22:05:25 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/24 22:18:25 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,18 @@ void	medium_stack_empty_a(t_stk *a, t_stk *b)
 	int		position;
 
 	hold.len = 0;
+	position = 0;
 	while (a->len != 0)
 	{
-		ft_printf("a\n");
 		chunk = get_chunk(a, &hold);
-		ft_printf("b\n");
 		print_chunk(&chunk);
 		position = get_hold_position(a, &hold, &chunk);
-		add_to_hold_lst(position, &hold, &chunk);
-		ft_printf("c\n");
+		append_lst(a->stk[position], &hold);
+		print_hold(&hold);
 		ft_printf("position = %d\n", position);
+		smart_rotate(a, b, position);
 		//print_stacks(a, b);
+		ft_printf("%d\n", a->stk[a->len -1]);
 		stack_push(a, b, 'a');
 		free(chunk.chunk.lst);
 		free(chunk.position);
@@ -74,32 +75,37 @@ int	get_hold_position(t_stk *a, t_lst *hold, t_chunk *chunk)
 	int	n;
 	int	m;
 
-	n = 0;
-	m = 0;
+	n = -1;
+	m = a->len;
 	hold_top = INT_MAX;
 	hold_bottom = INT_MAX;
-	while (n <= a->len / 2)
+	while (n <= a->len / 2 && hold_top == INT_MAX)
 	{
-		if (valide_hold(a->stk[n], hold, chunk) && a->stk[n] < hold_top)
-			hold_top = a->stk[n];
 		n++;
-	}
-	while (m > a->len / 2)
-	{
-		if (valide_hold(a->stk[n], hold, chunk) && a->stk[n] < hold_bottom)
+		if (valide_hold(a->stk[n], hold, chunk))
 			hold_top = a->stk[n];
-		m++;
 	}
-	if (n < m)
+	while (m > a->len / 2 && hold_bottom == INT_MAX)
+	{
+		m--;
+		if (valide_hold(a->stk[m], hold, chunk))
+			hold_bottom = a->stk[m];
+	}
+	if (n <= a->len - m)
+	{
+		ft_printf("n\n");
 		return (n);
+	}
 	else
+	{
+		ft_printf("m\n");
 		return (m);
+	}
 }
 
 int	valide_hold(int nb, t_lst *hold, t_chunk *chunk)
 {
 	int	n;
-	int	m;
 
 	n = 0;
 	while (n < hold->len)
@@ -109,29 +115,11 @@ int	valide_hold(int nb, t_lst *hold, t_chunk *chunk)
 		n++;
 	}
 	n = 0;
-	while (n < hold->len)
+	while (n < chunk->chunk.len)
 	{
-		m = 0;
-		while (m < chunk->chunk.len)
-		{
-			if (hold->lst[n] == chunk->chunk.lst[m])
-				return (1);
-			m++;
-		}
+		if (nb == chunk->chunk.lst[n])
+			return (1);
 		n++;
 	}
 	return (0);
-}
-
-void	add_to_hold_lst(int position, t_lst *hold, t_chunk *chunk)
-{
-	int	n;
-
-	n = 0;
-	while (n < chunk->chunk.len)
-	{
-		if (chunk->position[n] == position)
-			append_lst(chunk->chunk.lst[n], hold);
-		n++;
-	}
 }
