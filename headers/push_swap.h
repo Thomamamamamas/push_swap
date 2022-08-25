@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/24 22:03:49 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/25 14:32:52 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -33,12 +33,6 @@ typedef struct s_lst
 	int	*lst;
 	int	len;
 }		t_lst;
-
-typedef struct s_chunk
-{
-	t_lst	chunk;
-	int		*position;
-}			t_chunk;
 
 //push_swap_utils
 void		init_stack(t_stk *a, t_stk *b);
@@ -73,11 +67,12 @@ void		sort_large_stack(t_stk *a, t_stk *b);
 //push_swap_sort_utils
 void		mini_stack_empty_b(t_stk *a, t_stk *b);
 void		medium_stack_empty_a(t_stk *a, t_stk *b);
-int			get_hold_position(t_stk *a, t_lst *hold, t_chunk *chunk);
-int			valide_hold(int nb, t_lst *hold, t_chunk *chunk);
+int			get_hold_position(t_stk *a, t_lst *hold, t_lst *chunk);
+void		push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold);
+int			valide_hold(int nb, t_lst *hold, t_lst *chunk);
 
 //push_swap_sort_utils2
-t_chunk		get_chunk(t_stk *a, t_lst *hold);
+t_lst		get_chunk(t_stk *a, t_lst *hold);
 void		smart_rotate(t_stk *a, t_stk *b, int position);
 
 //push_swap_stack_utils
@@ -89,13 +84,13 @@ void		stack_reverse_rotate(t_stk *a, t_stk *b, int mode);
 //push_swap_stack_utils2
 void		rotate(t_stk *stk);
 void		reverse_rotate(t_stk *stk);
-int			get_min(t_stk *stk);
-int			get_max(t_stk *stk);
+int			get_smallest(t_stk *stk);
+int			get_largest(t_stk *stk);
 void		update_stack_data(t_stk *a, t_stk *b);
 
 //push_swap_debug
 void		print_stacks(t_stk *a, t_stk *b);
-void		print_chunk(t_chunk *chunk);
+void		print_chunk(t_lst *chunk);
 void		print_hold(t_lst *hold);
 
 #endif

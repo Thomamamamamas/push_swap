@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:29:53 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/24 20:22:37 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/25 11:21:34 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -35,19 +35,19 @@ void	print_stacks(t_stk *stk_a, t_stk *stk_b)
 	ft_printf("|-----------|-------\n|stk_a    |stk_b\n");
 }
 
-void	print_chunk(t_chunk *chunk)
+void	print_chunk(t_lst *chunk)
 {
 	int	n;
 	
 	n = 0;
 	ft_printf("_____CHUNK_____\n");
-	while (n < chunk->chunk.len)
+	while (n < chunk->len)
 	{
-		ft_printf("%d\n", chunk->chunk.lst[n]);
+		ft_printf("%d\n", chunk->lst[n]);
 		n++;
 	}
 	ft_printf("_____CHUNK_____\n");
-	ft_printf("chunk len = %d\n", chunk->chunk.len);
+	ft_printf("chunk len = %d\n", chunk->len);
 }
 
 void	print_hold(t_lst *hold)

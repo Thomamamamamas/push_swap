@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/24 22:18:25 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/25 14:32:37 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,41 @@ void	mini_stack_empty_b(t_stk *a, t_stk *b)
 void	medium_stack_empty_a(t_stk *a, t_stk *b)
 {
 	t_lst	hold;
-	t_chunk	chunk;
-	int		position;
 
 	hold.len = 0;
-	position = 0;
+	hold.lst = (int *)malloc(sizeof(int) * hold.len + 1);
 	while (a->len != 0)
 	{
-		chunk = get_chunk(a, &hold);
-		print_chunk(&chunk);
-		position = get_hold_position(a, &hold, &chunk);
-		append_lst(a->stk[position], &hold);
-		print_hold(&hold);
-		ft_printf("position = %d\n", position);
-		smart_rotate(a, b, position);
-		//print_stacks(a, b);
-		ft_printf("%d\n", a->stk[a->len -1]);
-		stack_push(a, b, 'a');
-		free(chunk.chunk.lst);
-		free(chunk.position);
+		push_chunk_to_b(a, b, &hold);
 		return ;
 	}
 	free(hold.lst);
 }
 
-int	get_hold_position(t_stk *a, t_lst *hold, t_chunk *chunk)
+void	push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold)
+{
+	t_lst	chunk;
+	int		position;
+	int		n;
+
+	chunk = get_chunk(a, hold);
+	print_chunk(&chunk);
+	position = -1;
+	n = chunk.len;
+	while (n > 0)
+	{
+		position = get_hold_position(a, hold, &chunk);
+		append_lst(a->stk[position], hold);
+		print_hold(hold);
+		ft_printf("position = %d\n", position);
+		smart_rotate(a, b, position);
+		stack_push(a, b, 'b');
+		n--;
+	}
+	free(chunk.lst);
+}
+
+int	get_hold_position(t_stk *a, t_lst *hold, t_lst *chunk)
 {
 	int	hold_top;
 	int	hold_bottom;
@@ -92,18 +102,12 @@ int	get_hold_position(t_stk *a, t_lst *hold, t_chunk *chunk)
 			hold_bottom = a->stk[m];
 	}
 	if (n <= a->len - m)
-	{
-		ft_printf("n\n");
 		return (n);
-	}
 	else
-	{
-		ft_printf("m\n");
 		return (m);
-	}
 }
 
-int	valide_hold(int nb, t_lst *hold, t_chunk *chunk)
+int	valide_hold(int nb, t_lst *hold, t_lst *chunk)
 {
 	int	n;
 
@@ -115,9 +119,9 @@ int	valide_hold(int nb, t_lst *hold, t_chunk *chunk)
 		n++;
 	}
 	n = 0;
-	while (n < chunk->chunk.len)
+	while (n < chunk->len)
 	{
-		if (nb == chunk->chunk.lst[n])
+		if (nb == chunk->lst[n])
 			return (1);
 		n++;
 	}
