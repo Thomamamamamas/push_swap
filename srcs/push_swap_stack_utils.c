@@ -6,10 +6,10 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:21:24 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/25 13:01:20 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 13:16:09 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../headers/push_swap.h"
 
 void	stack_swap(t_stk *stk_a, t_stk *stk_b, int mode)
 {

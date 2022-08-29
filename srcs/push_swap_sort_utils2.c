@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:47:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/25 15:19:14 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 15:28:27 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -53,4 +53,30 @@ void	smart_rotate(t_stk *a, t_stk *b, int position)
 			position++;
 		}
 	}
+}
+
+void	smart_push_to_b(t_stk *a, t_stk *b)
+{
+	int	stop_it;
+	int	target;
+
+	stop_it = 0;
+	target = get_target(b, a->top);
+	if (b->len == 0 || (a->top < b->min && b->top == b->min))
+		stop_it = 1;
+	while (stop_it == 0)
+	{
+		if (get_position(b, target) == b->len - 1)
+			stop_it = 1;
+		if (b->top == b->min && a->top < b->top)
+			stop_it = 1;
+		else if (b->top > a->top && b->bottom < a->top)
+			stop_it = 1;
+		if (get_position(b, target) <= b->len / 2)
+			stack_reverse_rotate(a, b, 'b');
+		else
+			stack_rotate(a, b, 'b');
+	}
+	stack_push(a, b, 'b');
+	print_stacks(a, b);
 }

@@ -6,10 +6,10 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:40:28 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/25 13:00:23 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 13:18:29 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../headers/push_swap.h"
 
 void	init_stack(t_stk *stk_a, t_stk *stk_b)
 {

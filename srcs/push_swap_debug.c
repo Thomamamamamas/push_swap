@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:29:53 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/25 11:21:34 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 14:07:53 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -22,17 +22,16 @@ void	print_stacks(t_stk *stk_a, t_stk *stk_b)
 	while (n >= 0)
 	{
 		if (n >= stk_a->len)
-			ft_printf("| ");
+			ft_printf("|     ");
 		else
-			ft_printf("|%d", stk_a->stk[n]);
-		ft_printf("          ");
+			ft_printf("|%-5d", stk_a->stk[n]);
 		if (n >= stk_b->len)
-			ft_printf("| \n");
+			ft_printf("|     \n");
 		else
-			ft_printf("|%d\n", stk_b->stk[n]);
+			ft_printf("|%-5d\n", stk_b->stk[n]);
 		n--;
 	}
-	ft_printf("|-----------|-------\n|stk_a    |stk_b\n");
+	ft_printf("____________\n  a     b\n");
 }
 
 void	print_chunk(t_lst *chunk)

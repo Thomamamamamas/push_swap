@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/25 14:32:37 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 14:58:48 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,13 @@ void	push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold)
 		position = get_hold_position(a, hold, &chunk);
 		append_lst(a->stk[position], hold);
 		print_hold(hold);
-		ft_printf("position = %d\n", position);
 		smart_rotate(a, b, position);
-		stack_push(a, b, 'b');
+		ft_printf("____________________________\n");
+		smart_push_to_b(a, b);
+		ft_printf("____________________________\n");
 		n--;
+		if (n == 15)
+			return ;
 	}
 	free(chunk.lst);
 }

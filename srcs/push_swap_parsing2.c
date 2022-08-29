@@ -6,10 +6,10 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:09:06 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/01 15:35:14 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 13:15:58 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../headers/push_swap.h"
 
 int	number_of_int_in_string(char *str)
 {

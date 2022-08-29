@@ -6,10 +6,10 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:08:54 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/05 14:20:02 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 13:15:37 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../headers/push_swap.h"
 
 void	parse_stack(int argc, char **argv, t_stk *stk_a)
 {

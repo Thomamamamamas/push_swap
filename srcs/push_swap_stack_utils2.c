@@ -6,10 +6,10 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/25 13:01:36 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/29 13:16:27 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../headers/push_swap.h"
 
 void	reverse_rotate(t_stk *stk)
 {
@@ -79,14 +79,12 @@ int	get_largest(t_stk *stk)
 	return (res);
 }
 
-void	update_stack_data(t_stk *stk_a, t_stk *stk_b)
+int		get_position(t_stk *stk, int nb)
 {
-	stk_a->top = stk_a->stk[stk_a->len - 1];
-	stk_a->bottom = stk_a->stk[0];
-	stk_a->smallest = get_smallest(stk_a);
-	stk_a->largest = get_largest(stk_a);
-	stk_b->top = stk_b->stk[stk_b->len - 1];
-	stk_b->bottom = stk_b->stk[0];
-	stk_b->smallest = get_smallest(stk_b);
-	stk_b->largest = get_largest(stk_b);
+	int	n;
+
+	n = 0;
+	while (n < stk->len && stk->stk[n] != nb)
+		n++;
+	return (n);
 }
