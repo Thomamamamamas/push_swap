@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/29 15:28:29 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/30 13:59:44 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -38,17 +38,25 @@ int	get_target(t_stk *stk, int nb)
 
 	n = stk->len - 1;
 	res = -1;
+	ft_printf("nb = %d\n", nb);
 	while (n >= 0 && res == -1)
 	{
 		actual = stk->stk[n];
 		if (n != stk->len - 1)
-			last = stk->stk[n - 1];
+			last = stk->stk[n + 1];
+		else
+			last = stk->stk[0];
+		ft_printf("n = %d\n", n);
+		ft_printf("actual = %d\n", actual);
+		ft_printf("last = %d\n", last);
 		if (n == stk->len - 1 && actual < stk->bottom && actual > stk->top)
-			res = n;
-		else if (n > 0 && actual > last && nb < actual)
-			res = n;
+			res = stk->stk[n];
+		else if (n > 0 && actual > last && nb < actual && nb > last)
+			res = stk->stk[n];
 		else if (n == 0)
-			res = n;
+			res = stk->stk[n];
+		n--;
 	}
+	ft_printf("target = %d\n", res);
 	return res;
 }

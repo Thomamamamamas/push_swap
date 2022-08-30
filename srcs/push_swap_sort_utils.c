@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/29 14:58:48 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/30 13:59:47 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,18 @@ void	push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold)
 	int		n;
 
 	chunk = get_chunk(a, hold);
-	print_chunk(&chunk);
 	position = -1;
 	n = chunk.len;
 	while (n > 0)
 	{
 		position = get_hold_position(a, hold, &chunk);
 		append_lst(a->stk[position], hold);
-		print_hold(hold);
 		smart_rotate(a, b, position);
 		ft_printf("____________________________\n");
 		smart_push_to_b(a, b);
 		ft_printf("____________________________\n");
 		n--;
-		if (n == 15)
+		if (n == 13)
 			return ;
 	}
 	free(chunk.lst);
