@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/29 15:15:24 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:09:30 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -92,7 +92,9 @@ int			get_position(t_stk *stk, int nb);
 //push_swap_stack_utils3
 void		update_stack_data(t_stk *a, t_stk *b);
 void		free_stacks(t_stk *a, t_stk *b);
+int			get_smallest_target(t_stk *stk, int nb, int actual);
 int			get_target(t_stk *stk, int nb);
+void		push_to_a_sorted(t_stk *a, t_stk *b);
 
 //push_swap_debug
 void		print_stacks(t_stk *a, t_stk *b);

@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/30 13:59:47 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:09:32 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	medium_stack_empty_a(t_stk *a, t_stk *b)
 	while (a->len != 0)
 	{
 		push_chunk_to_b(a, b, &hold);
-		return ;
 	}
 	free(hold.lst);
 }
@@ -69,12 +68,8 @@ void	push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold)
 		position = get_hold_position(a, hold, &chunk);
 		append_lst(a->stk[position], hold);
 		smart_rotate(a, b, position);
-		ft_printf("____________________________\n");
 		smart_push_to_b(a, b);
-		ft_printf("____________________________\n");
 		n--;
-		if (n == 13)
-			return ;
 	}
 	free(chunk.lst);
 }

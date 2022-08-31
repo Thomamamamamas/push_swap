@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/30 13:59:44 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:09:36 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -29,34 +29,62 @@ void	free_stacks(t_stk *a, t_stk *b)
 	free(b->stk);
 }
 
+int	get_smallest_target(t_stk *stk, int nb, int actual)
+{
+	int	n;
+
+	n = stk->len - 1;
+	while (n > 0)
+	{
+		if (stk->stk[n] > actual && stk->stk[n] < nb)
+			actual = stk->stk[n];
+		n--;
+	}
+	return (actual);
+}
+
+int	get_limit_target(t_stk *stk, int nb)
+{
+	if (stk->len == 3 && nb < get_smallest(stk))
+		return (get_smallest(stk));
+}
+
 int	get_target(t_stk *stk, int nb)
 {
 	int	n;
-	int	res;
 	int	actual;
 	int	last;
 
 	n = stk->len - 1;
-	res = -1;
-	ft_printf("nb = %d\n", nb);
-	while (n >= 0 && res == -1)
+	while (n >= 0)
 	{
 		actual = stk->stk[n];
 		if (n != stk->len - 1)
 			last = stk->stk[n + 1];
 		else
 			last = stk->stk[0];
-		ft_printf("n = %d\n", n);
-		ft_printf("actual = %d\n", actual);
-		ft_printf("last = %d\n", last);
-		if (n == stk->len - 1 && actual < stk->bottom && actual > stk->top)
-			res = stk->stk[n];
-		else if (n > 0 && actual > last && nb < actual && nb > last)
-			res = stk->stk[n];
-		else if (n == 0)
-			res = stk->stk[n];
+		if (nb < get_smallest(stk))
+			return (get_largest(stk));
+		else if (nb > get_largest(stk))
+			return (get_largest(stk));
+		else if (n > 0 && actual < last && nb > actual && nb < last)
+			return (get_smallest_target(stk, nb, stk->stk[n]));
 		n--;
 	}
-	ft_printf("target = %d\n", res);
-	return res;
+	return (stk->stk[stk->len - 1]);
+}
+
+void	push_to_a_sorted(t_stk *a, t_stk *b)
+{
+	while (b->len != 0)
+	{
+		while (b->top != get_largest(b))
+		{
+			if (get_position(b, get_largest(b)) <= b->len / 2)
+				stack_reverse_rotate(a, b, 'b');
+			else
+				stack_rotate(a, b, 'b');
+		}
+		stack_push(a, b, 'a');
+	}
 }
