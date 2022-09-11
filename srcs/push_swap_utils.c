@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:40:28 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/29 13:18:29 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/10 11:13:57 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -15,6 +15,12 @@ void	init_stack(t_stk *stk_a, t_stk *stk_b)
 {
 	stk_b->len = 0;
 	stk_b->stk = (int *)malloc(sizeof(int) * stk_a->len);
+}
+
+void	free_stacks(t_stk *a, t_stk *b)
+{
+	free(a->stk);
+	free(b->stk);
 }
 
 int	stack_is_sort(t_stk *stk)

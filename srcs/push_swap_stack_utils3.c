@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_stack_utils2.c                           :+:      :+:    :+:   */
+/*   push_swap_stack_utils3.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/31 16:09:36 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/10 11:14:57 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -23,12 +23,6 @@ void	update_stack_data(t_stk *stk_a, t_stk *stk_b)
 	stk_b->max = get_largest(stk_b);
 }
 
-void	free_stacks(t_stk *a, t_stk *b)
-{
-	free(a->stk);
-	free(b->stk);
-}
-
 int	get_smallest_target(t_stk *stk, int nb, int actual)
 {
 	int	n;
@@ -41,12 +35,6 @@ int	get_smallest_target(t_stk *stk, int nb, int actual)
 		n--;
 	}
 	return (actual);
-}
-
-int	get_limit_target(t_stk *stk, int nb)
-{
-	if (stk->len == 3 && nb < get_smallest(stk))
-		return (get_smallest(stk));
 }
 
 int	get_target(t_stk *stk, int nb)

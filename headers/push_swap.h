@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/31 16:09:30 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/10 11:15:43 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -36,6 +36,7 @@ typedef struct s_lst
 
 //push_swap_utils
 void		init_stack(t_stk *a, t_stk *b);
+void		free_stacks(t_stk *a, t_stk *b);
 int			stack_is_sort(t_stk *stk);
 
 //push_swap_utils2
@@ -63,6 +64,7 @@ void		sort_three_number(t_stk *a, t_stk *b);
 void		sort_mini_stack(t_stk *a, t_stk *b);
 void		sort_medium_stack(t_stk *a, t_stk *b);
 void		sort_large_stack(t_stk *a, t_stk *b);
+void		sort_big_stack(t_stk *a, t_stk *b);
 
 //push_swap_sort_utils
 void		mini_stack_empty_b(t_stk *a, t_stk *b);
@@ -70,6 +72,15 @@ void		medium_stack_empty_a(t_stk *a, t_stk *b);
 int			get_hold_position(t_stk *a, t_lst *hold, t_lst *chunk);
 void		push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold);
 int			valide_hold(int nb, t_lst *hold, t_lst *chunk);
+
+//push_swap_big_stack
+void		empty_stack_a(t_stk *a, t_stk *b);
+int			get_smartest_move(t_stk *a, t_stk *b);
+int			check_for_double_r(t_stk *a, t_stk *b, int nb);
+
+//push_swap_big_stack_utils
+int			get_biggest_in_partition(t_stk *stk, int part);
+int			get_total_move_stack(t_stk *stk, int nb);
 
 //push_swap_sort_utils2
 t_lst		get_chunk(t_stk *a, t_lst *hold);
@@ -91,7 +102,6 @@ int			get_position(t_stk *stk, int nb);
 
 //push_swap_stack_utils3
 void		update_stack_data(t_stk *a, t_stk *b);
-void		free_stacks(t_stk *a, t_stk *b);
 int			get_smallest_target(t_stk *stk, int nb, int actual);
 int			get_target(t_stk *stk, int nb);
 void		push_to_a_sorted(t_stk *a, t_stk *b);

@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:23:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/31 16:03:56 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/10 10:47:15 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -58,4 +58,35 @@ void	sort_large_stack(t_stk *a, t_stk *b)
 {
 	medium_stack_empty_a(a, b);
 	push_to_a_sorted(a, b);
+}
+
+void	sort_big_stack(t_stk *a, t_stk *b)
+{
+	int	nb;
+	int	double_r;
+
+	empty_stack_a(a, b);
+	print_stacks(a, b);
+	while (b->len != 0)
+	{
+		nb = get_smartest_move(a, b);
+		while (b->top != nb)
+		{
+			double_r = check_for_double_r(a, b, nb);
+			if (get_position(b, nb) >= b->len / 2)
+			{
+				if (double_r == 1)
+					stack_rotate(a, b, 'r');
+				else
+					stack_rotate(a, b, 'b');
+			}
+			else
+			{
+				if (double_r == 1)
+					stack_reverse_rotate(a, b, 'r');
+				else
+					stack_reverse_rotate(a, b, 'b');
+			}
+		}
+	}
 }
