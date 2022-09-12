@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/10 11:15:43 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/12 13:48:36 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -76,11 +76,16 @@ int			valide_hold(int nb, t_lst *hold, t_lst *chunk);
 //push_swap_big_stack
 void		empty_stack_a(t_stk *a, t_stk *b);
 int			get_smartest_move(t_stk *a, t_stk *b);
-int			check_for_double_r(t_stk *a, t_stk *b, int nb);
+void		stacks_smart_rotate(t_stk *a, t_stk *b, int nb, int target);
+void		put_target_on_top_a(t_stk *a, t_stk *b, int target);
+void		sort_a(t_stk *a, t_stk *b);
 
 //push_swap_big_stack_utils
 int			get_biggest_in_partition(t_stk *stk, int part);
 int			get_total_move_stack(t_stk *stk, int nb);
+int			get_biggest_position_wanted(t_stk *stk, int nb, int actual);
+int			get_position_wanted(t_stk *stk, int nb);
+int			check_for_double_r(t_stk *a, t_stk *b, int nb, int target);
 
 //push_swap_sort_utils2
 t_lst		get_chunk(t_stk *a, t_lst *hold);
