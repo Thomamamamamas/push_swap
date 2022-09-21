@@ -6,40 +6,11 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/12 10:13:57 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/21 14:24:09 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/push_swap.h"
-
-void	mini_stack_empty_b(t_stk *a, t_stk *b)
-{
-	if (a->top < b->top || a->bottom > b->top || a->max < b->top)
-	{
-		if (a->max > b->top)
-		{
-			while (b->top < a->bottom && b->top > a->min)
-				stack_reverse_rotate(a, b, 'a');
-			while (b->top > a->top)
-				stack_rotate(a, b, 'a');
-			stack_push(a, b, 'a');
-			if (b->len == 0 || (b->len > 0 && b->top < a->min))
-			{
-				while (!stack_is_sort(a))
-					stack_rotate(a, b, 'a');
-			}
-		}
-		else
-		{
-			while (!stack_is_sort(a))
-				stack_rotate(a, b, 'a');
-			stack_push(a, b, 'a');
-			stack_rotate(a, b, 'a');
-		}
-	}
-	else
-		stack_push(a, b, 'a');
-}
 
 void	medium_stack_empty_a(t_stk *a, t_stk *b)
 {
@@ -67,7 +38,7 @@ void	push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold)
 	{
 		position = get_hold_position(a, hold, &chunk);
 		append_lst(a->stk[position], hold);
-		smart_rotate(a, b, position);
+		smart_rotate(a, b, position, 'a');
 		smart_push_to_b(a, b);
 		n--;
 	}

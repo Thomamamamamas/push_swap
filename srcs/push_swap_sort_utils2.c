@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:47:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/31 16:09:34 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/21 14:43:49 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -77,4 +77,37 @@ void	smart_push_to_b(t_stk *a, t_stk *b)
 		}
 	}
 	stack_push(a, b, 'b');
+}
+
+int	is_three_largest(t_stk *stk, int nb)
+{
+	int	n;
+	int	first;
+	int	second;
+	int	third;
+
+	n = 0;
+	first = INT_MIN;
+	second = INT_MIN;
+	third = INT_MIN;
+	while (n < stk->len - 1)
+	{
+		if (stk->stk[n] > first)
+		{
+			third = second; 
+			second = first;
+			first = stk->stk[n];
+		}
+		else if (stk->stk[n] > second && stk->stk[n] != first)
+		{
+			third = second;
+			second = stk->stk[n];
+		}
+		else if (stk->stk[n] > third && stk->stk[n] != second && stk->stk[n] != first)
+			third = stk->stk[n];
+		n++;
+	}
+	if (nb == first || nb == second || nb == third)
+		return (1);
+	return (0);
 }

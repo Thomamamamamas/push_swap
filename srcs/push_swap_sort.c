@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:23:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/12 13:55:20 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/21 14:43:51 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -34,11 +34,17 @@ void	sort_three_number(t_stk *a, t_stk *b)
 void	sort_mini_stack(t_stk *a, t_stk *b)
 {
 	while (a->len != 3)
-		stack_push(a, b, 'b');
+	{
+		if (is_three_largest(a, a->top))
+			stack_rotate(a, b, 'a');
+		else
+			stack_push(a, b, 'b');
+	}
 	sort_three_number(a, b);
-	mini_stack_empty_b(a, b);
-	if (b->len != 0)
-		mini_stack_empty_b(a, b);
+	print_stacks(a, b);
+	push_to_a_sorted(a, b);
+	print_stacks(a, b);
+	return ;
 	while (!stack_is_sort(a))
 	{
 		if (get_smallest(a) <= a->len / 2)
@@ -58,27 +64,4 @@ void	sort_large_stack(t_stk *a, t_stk *b)
 {
 	medium_stack_empty_a(a, b);
 	push_to_a_sorted(a, b);
-}
-
-void	sort_big_stack(t_stk *a, t_stk *b)
-{
-	int	nb;
-	int	target;
-	int	test;
-
-	empty_stack_a(a, b);
-	test = 0;
-	while (b->len != 0)
-	{
-		print_stacks(a, b);
-		nb = get_smartest_move(a, b);
-		target = get_position_wanted(a, nb);
-		ft_printf("nb = %d\n", target);
-		ft_printf("target = %d\n", target);
-		stacks_smart_rotate(a, b, nb, target);
-		put_target_on_top_a(a, b, target);
-		stack_push(a, b, 'a');
-		test++;
-	}
-	sort_a(a, b);
 }

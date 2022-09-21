@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/12 13:48:36 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/21 14:43:54 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -44,53 +44,32 @@ int			get_number_index(t_stk *stk, int nb);
 int			is_in_lst(int n, t_lst *lst);
 int			get_index_of_larger_nb(int nb, t_lst *lst);
 void		append_lst(int nb, t_lst *lst);
+int			is_not_duplicate(t_stk *stk);
 
 //push_swap_parsing
-void		parse_stack(int argc, char **argv, t_stk *a);
-int			arg_is_valid(char *argv);
-int			arg_is_string_of_int(char *argv);
-int			*parse_string(char *argv);
-void		handle_parsing_error(t_stk *a);
-
-//push_swap_parsing2
-int			number_of_int_in_string(char *str);
-void		update_stk_parsing(t_stk *stk, int *numbers, int len);
-void		update_int_parsing(t_stk *stk);
-int			check_if_negative_int_is_valid(char *str);
-int			is_not_duplicate(t_stk *stk);
+void		parsing(int argc, char **argv, t_stk *a);
+int			char_is_valid(char *str);
+int			str_is_negative(char *str);
+void		update_stk_parse(t_stk *stk, char *tmp);
+void		handle_parse_error(t_stk *stk_a);
 
 //push_swap_sort
 void		sort_three_number(t_stk *a, t_stk *b);
 void		sort_mini_stack(t_stk *a, t_stk *b);
 void		sort_medium_stack(t_stk *a, t_stk *b);
 void		sort_large_stack(t_stk *a, t_stk *b);
-void		sort_big_stack(t_stk *a, t_stk *b);
 
 //push_swap_sort_utils
-void		mini_stack_empty_b(t_stk *a, t_stk *b);
 void		medium_stack_empty_a(t_stk *a, t_stk *b);
 int			get_hold_position(t_stk *a, t_lst *hold, t_lst *chunk);
 void		push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold);
 int			valide_hold(int nb, t_lst *hold, t_lst *chunk);
 
-//push_swap_big_stack
-void		empty_stack_a(t_stk *a, t_stk *b);
-int			get_smartest_move(t_stk *a, t_stk *b);
-void		stacks_smart_rotate(t_stk *a, t_stk *b, int nb, int target);
-void		put_target_on_top_a(t_stk *a, t_stk *b, int target);
-void		sort_a(t_stk *a, t_stk *b);
-
-//push_swap_big_stack_utils
-int			get_biggest_in_partition(t_stk *stk, int part);
-int			get_total_move_stack(t_stk *stk, int nb);
-int			get_biggest_position_wanted(t_stk *stk, int nb, int actual);
-int			get_position_wanted(t_stk *stk, int nb);
-int			check_for_double_r(t_stk *a, t_stk *b, int nb, int target);
-
 //push_swap_sort_utils2
 t_lst		get_chunk(t_stk *a, t_lst *hold);
 void		smart_rotate(t_stk *a, t_stk *b, int position);
 void		smart_push_to_b(t_stk *a, t_stk *b);
+int			is_three_largest(t_stk *stk, int nb);
 
 //push_swap_stack_utils
 void		stack_swap(t_stk *a, t_stk *b, int mode);
