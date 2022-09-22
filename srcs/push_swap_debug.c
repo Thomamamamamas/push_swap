@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:29:53 by tcasale           #+#    #+#             */
-/*   Updated: 2022/08/29 14:07:53 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/22 12:43:12 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -37,7 +37,7 @@ void	print_stacks(t_stk *stk_a, t_stk *stk_b)
 void	print_chunk(t_lst *chunk)
 {
 	int	n;
-	
+
 	n = 0;
 	ft_printf("_____CHUNK_____\n");
 	while (n < chunk->len)

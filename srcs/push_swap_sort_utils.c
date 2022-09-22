@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:12:23 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/21 14:24:09 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/22 11:18:16 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	push_chunk_to_b(t_stk *a, t_stk *b, t_lst *hold)
 	{
 		position = get_hold_position(a, hold, &chunk);
 		append_lst(a->stk[position], hold);
-		smart_rotate(a, b, position, 'a');
+		smart_rotate(a, b, position);
 		smart_push_to_b(a, b);
 		n--;
 	}

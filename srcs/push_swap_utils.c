@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:40:28 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/21 13:10:38 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/22 12:40:09 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -63,4 +63,31 @@ int	is_not_duplicate(t_stk *stk)
 		n++;
 	}
 	return (1);
+}
+
+void	get_three_biggest_nb(t_stk *stk)
+{
+	int	n;
+
+	n = 0;
+	stk->first = INT_MIN;
+	stk->second = INT_MIN;
+	stk->third = INT_MIN;
+	while (n <= stk->len - 1)
+	{
+		if (stk->stk[n] > stk->first)
+		{
+			stk->third = stk->second;
+			stk->second = stk->first;
+			stk->first = stk->stk[n];
+		}
+		else if (stk->stk[n] > stk->second && stk->stk[n] != stk->first)
+		{
+			stk->third = stk->second;
+			stk->second = stk->stk[n];
+		}
+		else if (stk->stk[n] > stk->third && stk->stk[n] != stk->second)
+			stk->third = stk->stk[n];
+		n++;
+	}
 }

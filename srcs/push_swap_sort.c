@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:23:36 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/21 14:43:51 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/22 12:38:34 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -35,22 +35,17 @@ void	sort_mini_stack(t_stk *a, t_stk *b)
 {
 	while (a->len != 3)
 	{
-		if (is_three_largest(a, a->top))
+		if (a->top == a->first || a->top == a->second || a->top == a->third)
 			stack_rotate(a, b, 'a');
 		else
 			stack_push(a, b, 'b');
 	}
 	sort_three_number(a, b);
-	print_stacks(a, b);
-	push_to_a_sorted(a, b);
-	print_stacks(a, b);
-	return ;
-	while (!stack_is_sort(a))
+	while (b->len != 0)
 	{
-		if (get_smallest(a) <= a->len / 2)
-			stack_reverse_rotate(a, b, 'a');
-		else
-			stack_rotate(a, b, 'a');
+		if (get_smallest(b) == b->top && b->len != 1)
+			stack_rotate(a, b, 'b');
+		stack_push(a, b, 'a');
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:31:34 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/21 12:58:22 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/22 12:43:16 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -37,7 +37,7 @@ int	is_in_lst(int n, t_lst *lst)
 	return (0);
 }
 
-int	get_index_of_larger_nb(int nb, t_lst *lst)
+int	index_largest_nb(int nb, t_lst *lst)
 {
 	int	n;
 	int	max;

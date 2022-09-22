@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:42:47 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/21 13:25:34 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/09/22 12:40:32 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -79,7 +79,7 @@ int	get_largest(t_stk *stk)
 	return (res);
 }
 
-int		get_position(t_stk *stk, int nb)
+int	get_position(t_stk *stk, int nb)
 {
 	int	n;
 
