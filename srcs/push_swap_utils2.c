@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:31:34 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/22 12:43:16 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/10/12 16:21:42 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -82,4 +82,14 @@ void	append_lst(int nb, t_lst *lst)
 	}
 	lst->lst[n] = nb;
 	free(tmp);
+}
+
+void	free_2d_array_char(char **array)
+{
+	int	n;
+
+	n = 0;
+	while (array[n] != NULL)
+		free(array[n++]);
+	free(array);
 }

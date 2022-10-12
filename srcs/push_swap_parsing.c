@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:16:22 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/21 13:16:25 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/10/12 16:22:54 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../headers/push_swap.h"
@@ -27,9 +27,13 @@ void	parsing(int argc, char **argv, t_stk *stk_a)
 			if (char_is_valid(tmp[m]))
 				update_stk_parse(stk_a, tmp[m]);
 			else
+			{
+				free_2d_array_char(tmp);
 				handle_parse_error(stk_a);
+			}
 			m++;
 		}
+		free_2d_array_char(tmp);
 		n--;
 	}
 }

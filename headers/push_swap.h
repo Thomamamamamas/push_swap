@@ -6,7 +6,7 @@
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:30 by tcasale           #+#    #+#             */
-/*   Updated: 2022/09/22 12:43:18 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/10/12 16:20:40 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -42,13 +42,14 @@ void		init_stack(t_stk *a, t_stk *b);
 void		free_stacks(t_stk *a, t_stk *b);
 int			stack_is_sort(t_stk *stk);
 void		get_three_biggest_nb(t_stk *stk);
+int			is_not_duplicate(t_stk *stk);
 
 //push_swap_utils2
 int			get_number_index(t_stk *stk, int nb);
 int			is_in_lst(int n, t_lst *lst);
 int			index_largest_nb(int nb, t_lst *lst);
 void		append_lst(int nb, t_lst *lst);
-int			is_not_duplicate(t_stk *stk);
+void		free_2d_array_char(char **array);
 
 //push_swap_parsing
 void		parsing(int argc, char **argv, t_stk *a);
